@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User management</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+<br>
+<nav class="navbar navbar-expand-md navbar-light">
+    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="navbar-brand" href="#">
+                    <img src="data:image/jpeg;base64,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"
+                         alt="" width="30" class="d-inline-block align-text-top">
+                    Itransition
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="mx-auto order-0">
+        <a class="navbar-brand mx-auto" href="#" style="font-family: 'Arial Black' ">User Management</a>
+        <hr>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item" style="padding-right: 1rem">
+                <button onclick="deleteAll()" class="btn btn-warning btn-rounded btn-sm">
+                    <i class="fa fa-trash"></i>
+                    Delete
+                </button>
+            </li>
+            <li class="nav-item" style="padding-right: 1rem">
+                <button onclick="unBlockAll()" class="btn btn-success btn-rounded btn-sm">
+                    <i class="fa fa-unlock"></i>
+                    UnBlock
+                </button>
+            </li>
+            <li class="nav-item" style="padding-right: 1rem">
+                <button onclick="blockAll()" class="btn btn-danger btn-rounded btn-sm">
+                    <i class="fa fa-ban"></i>
+                    Block
+                </button>
+            </li>
+            <li class="nav-item" style="padding-right: 1rem">
+                <a th:href="@{/logout}">
+                    <button class="btn btn-secondary btn-rounded btn-sm">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Logout
+                    </button>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container" style="padding: 2rem; border: #be32bc; ">
+    <div class="container table-responsive py-5">
+        <table class="table" style="border: #be32bc; font-family: Calibri">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col">
+                    <div class="form-check" style="margin-top: -1.6em">
+                        <input id="myCheck" class="form-check-input" type="checkbox" onclick="checkAll(this)">
+                    </div>
+                </th>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Last activity</th>
+                <th scope="col">Registration time</th>
+                <th scope="col">Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${userList}">
+                <td>
+                    <div class="form-check">
+                        <input onclick="collectUser(this)" class="form-check-input" type="checkbox"
+                               th:value="${user.id}">
+                    </div>
+                </td>
+                <th scope="row" th:text="${user.id}"></th>
+                <td th:text="${user.name}" td></td>
+                <td th:text="${user.email}" td></td>
+                <td th:text="${#temporals.format(user.lastLoginTime, 'yyyy-MM-dd HH:mm')}"></td>
+                <td th:text="${#temporals.format(user.registrationTime, 'yyyy-MM-dd HH:mm')}"></td>
+                <div th:if="${user.isBlocked}">
+                    <td><span class="badge badge-danger">Blocked</span></td>
+                </div>
+                <div th:if="${!user.isBlocked}">
+                    <td><span class="badge badge-success">Active</span></td>
+                </div>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+
+        var users = [];
+
+        function deleteAll() {
+            console.log(users);
+            fetch('/delete-selected', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(users)
+            }).then(response => {
+                console.log(response);
+                users = [];
+                window.location.reload();
+
+            });
+        }
+
+        function blockAll() {
+            console.log(users);
+            fetch('/block-selected', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(users)
+            }).then(response => {
+                console.log(response);
+                users = [];
+                window.location.reload();
+
+            });
+        }
+
+        function unBlockAll() {
+            console.log(users);
+            fetch('/unblock-selected', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(users)
+            }).then(response => {
+                console.log(response);
+                users = [];
+                window.location.reload();
+            });
+        }
+
+        function checkAll(bx) {
+            users = [];
+            var checkboxes = document.getElementsByTagName('input');
+            var checkedValue = null;
+
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].type == 'checkbox') {
+                    checkboxes[i].checked = bx.checked;
+                    if (checkboxes[i].checked && i !== 0) {
+                        checkedValue = checkboxes[i].value;
+                        console.log(checkedValue);
+                        users.push(checkedValue);
+                    }
+                }
+            }
+
+            console.log("User id");
+
+            for (var i = 0; i < users.length; i++) {
+                console.log(users[i]);
+            }
+
+            console.log(checkboxes);
+        }
+
+        function collectUser(bx) {
+
+            console.log(bx.value);
+
+            if (bx.checked)
+                users.push(bx.value);
+            else {
+                for (let i = 0; i < users.length; i++) {
+                    if (users[i] == bx.value) {
+                        users.splice(i, 1);
+                        break;
+                    }
+                }
+            }
+
+            console.log(users)
+
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"></script>
+</div>
+</body>
+</html>
